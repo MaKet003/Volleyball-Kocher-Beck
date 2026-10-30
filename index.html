@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#14213d">
+<title>Volleyball Kocher + Beck – Anmeldung</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%90%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --navy: #14213d;
+    --navy-2: #1f3264;
+    --sun: #fca311;
+    --sun-dark: #c77c00;
+    --sand: #f6efe2;
+    --ink: #1b1b1f;
+    --muted: #5b5f6b;
+    --line: #d9d4c8;
+    --error: #b42318;
+    --ok: #18794e;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    background: var(--sand);
+    line-height: 1.45;
+  }
+  header {
+    background: radial-gradient(circle at 85% -10%, var(--navy-2), var(--navy) 60%);
+    color: #fff;
+    padding: 28px 20px 64px;
+    padding: calc(28px + env(safe-area-inset-top)) 20px 64px;
+    text-align: center;
+  }
+  .ball { width: 64px; height: 64px; display: block; margin: 0 auto 10px; }
+  h1 {
+    margin: 0;
+    font-size: clamp(2rem, 9vw, 2.6rem);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    line-height: 1.05;
+  }
+  .company { margin: 6px 0 12px; font-size: 1.15rem; font-weight: 600; opacity: .95; }
+  .badge {
+    display: inline-block;
+    background: var(--sun);
+    color: var(--navy);
+    font-weight: 800;
+    padding: 5px 14px;
+    border-radius: 999px;
+    transform: rotate(-3deg);
+    letter-spacing: .02em;
+  }
+  main {
+    max-width: 480px;
+    margin: -40px auto 0;
+    padding: 0 16px 32px;
+    padding: 0 16px calc(32px + env(safe-area-inset-bottom));
+  }
+  .card {
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(20, 33, 61, .12);
+    padding: 22px 20px 24px;
+  }
+  .card h2 { margin: 0 0 4px; font-size: 1.3rem; }
+  .lead { margin: 0 0 18px; color: var(--muted); }
+  .field { margin-bottom: 16px; }
+  label { display: block; font-weight: 600; margin-bottom: 6px; }
+  input[type="text"], input[type="tel"] {
+    width: 100%;
+    font: inherit;
+    font-size: 16px; /* verhindert Auto-Zoom auf iOS */
+    padding: 13px 14px;
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--ink);
+    transition: border-color .15s, box-shadow .15s;
+  }
+  input[type="text"]:focus, input[type="tel"]:focus {
+    outline: none;
+    border-color: var(--navy-2);
+    box-shadow: 0 0 0 3px rgba(31, 50, 100, .18);
+  }
+  input[aria-invalid="true"] { border-color: var(--error); }
+  .hint { font-size: .85rem; color: var(--muted); margin-top: 5px; }
+  .error { font-size: .88rem; color: var(--error); margin-top: 5px; display: none; }
+  .error.show { display: block; }
+  .consent {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-weight: 400;
+    font-size: .92rem;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .consent input { width: 22px; height: 22px; margin: 1px 0 0; flex: none; accent-color: var(--navy); }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  button {
+    font: inherit;
+    cursor: pointer;
+    border: 0;
+    border-radius: 12px;
+  }
+  .submit {
+    width: 100%;
+    margin-top: 6px;
+    padding: 15px 18px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--navy);
+    background: var(--sun);
+    box-shadow: 0 3px 0 var(--sun-dark);
+    transition: transform .05s, filter .15s;
+  }
+  .submit:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--sun-dark); }
+  .submit:focus-visible, .secondary:focus-visible { outline: 3px solid var(--navy-2); outline-offset: 2px; }
+  .submit[disabled] { filter: grayscale(.4) brightness(.95); cursor: progress; }
+  .alert {
+    display: none;
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #fdecea;
+    color: var(--error);
+    font-size: .93rem;
+  }
+  .alert.show { display: block; }
+  .alert a { color: inherit; font-weight: 700; }
+  .success { text-align: center; padding: 10px 4px 4px; }
+  .success svg { width: 72px; height: 72px; }
+  .success h2 { margin: 10px 0 6px; font-size: 1.45rem; }
+  .success p { margin: 0 0 10px; }
+  .wa {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    text-align: left;
+    background: #e9f7ef;
+    color: #0f5132;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 16px 0 18px;
+  }
+  .wa svg { width: 28px; height: 28px; flex: none; }
+  .secondary {
+    background: transparent;
+    color: var(--navy-2);
+    font-weight: 600;
+    text-decoration: underline;
+    padding: 8px;
+  }
+  .privacy { margin-top: 18px; font-size: .85rem; color: var(--muted); }
+  .privacy summary { cursor: pointer; font-weight: 600; color: var(--navy-2); padding: 4px 0; }
+  .privacy p { margin: 8px 0 0; }
+  .contact-email { word-break: break-all; }
+  footer { text-align: center; color: var(--muted); font-size: .8rem; margin-top: 18px; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<header>
+  <svg class="ball" viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="#14213d" stroke-width="4" stroke-linecap="round">
+    <circle cx="50" cy="50" r="46" fill="#fff"/>
+    <path d="M50 50 C 36 34 36 18 46 4.5"/>
+    <path d="M50 50 C 36 34 36 18 46 4.5" transform="rotate(120 50 50)"/>
+    <path d="M50 50 C 36 34 36 18 46 4.5" transform="rotate(240 50 50)"/>
+    <path d="M37.5 18 C 56 24 76 22 92 16" stroke-width="3"/>
+    <path d="M37.5 18 C 56 24 76 22 92 16" stroke-width="3" transform="rotate(120 50 50)"/>
+    <path d="M37.5 18 C 56 24 76 22 92 16" stroke-width="3" transform="rotate(240 50 50)"/>
+    <circle cx="50" cy="50" r="46" stroke-width="5"/>
+  </svg>
+  <h1>Volleyball</h1>
+  <p class="company">Kocher + Beck</p>
+  <span class="badge">Just for Fun</span>
+</header>
+
+<main>
+  <section class="card" id="form-card">
+    <h2>Hier anmelden</h2>
+    <p class="lead">Trag dich ein – danach laden wir dich in unsere WhatsApp-Gruppe ein.</p>
+
+    <form id="signup" method="post" action="#" novalidate>
+      <div class="field">
+        <label for="vorname">Vorname</label>
+        <input type="text" id="vorname" name="vorname" autocomplete="given-name" autocapitalize="words" autocorrect="off" spellcheck="false" enterkeyhint="next" maxlength="60" required>
+        <div class="error" id="vorname-error">Bitte gib deinen Vornamen ein.</div>
+      </div>
+
+      <div class="field">
+        <label for="nachname">Nachname</label>
+        <input type="text" id="nachname" name="nachname" autocomplete="family-name" autocapitalize="words" autocorrect="off" spellcheck="false" enterkeyhint="next" maxlength="60" required>
+        <div class="error" id="nachname-error">Bitte gib deinen Nachnamen ein.</div>
+      </div>
+
+      <div class="field">
+        <label for="handy">Handynummer</label>
+        <input type="tel" id="handy" name="handy" autocomplete="tel" inputmode="tel" enterkeyhint="done" maxlength="25" placeholder="z. B. 0151 23456789" required aria-describedby="handy-hint">
+        <div class="hint" id="handy-hint">Die Nummer, mit der du WhatsApp nutzt.</div>
+        <div class="error" id="handy-error">Bitte gib eine gültige Handynummer ein.</div>
+      </div>
+
+      <!-- Spam-Falle: für Menschen unsichtbar, Bots füllen sie aus -->
+      <div class="hp" aria-hidden="true">
+        <label for="_honey">Nicht ausfüllen</label>
+        <input type="text" id="_honey" name="_honey" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label class="consent" for="consent">
+          <input type="checkbox" id="consent" name="consent" required>
+          <span>Ich bin einverstanden, dass meine Angaben zur Organisation der Volleyball-Gruppe genutzt werden und ich in die WhatsApp-Gruppe eingeladen werde. Dort sehen die anderen Mitglieder meinen Namen und meine Nummer. Widerruf jederzeit per Mail möglich.</span>
+        </label>
+        <div class="error" id="consent-error">Bitte bestätige die Einwilligung.</div>
+      </div>
+
+      <button type="submit" class="submit" id="submit-btn">Anmeldung bestätigen</button>
+
+      <div class="alert" id="send-error" role="alert"></div>
+      <noscript><div class="alert show">Bitte JavaScript aktivieren – oder schick deine Anmeldung per E-Mail an Volleyball.Kocher-Beck@gmail.com.</div></noscript>
+    </form>
+
+    <details class="privacy">
+      <summary>Datenschutzhinweis</summary>
+      <p><strong>Wer?</strong> Private Freizeit-Initiative von Kolleginnen und Kollegen bei Kocher + Beck. Kontakt: <span class="contact-email">Volleyball.Kocher-Beck@gmail.com</span></p>
+      <p><strong>Was und wofür?</strong> Vorname, Nachname und Handynummer – nur, um die Volleyball-Gruppe zu organisieren und dich in die WhatsApp-Gruppe einzuladen. Grundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).</p>
+      <p><strong>Wer bekommt die Daten?</strong> Die Anmeldung wird über einen Formular-Dienst per E-Mail an das Gmail-Postfach der Gruppe geschickt. Beteiligt sind dabei der Webhoster dieser Seite, der Formular-Dienst und Google; in der WhatsApp-Gruppe außerdem WhatsApp/Meta und die anderen Mitglieder. Diese Anbieter können die Daten auch außerhalb der EU (z. B. in den USA) verarbeiten.</p>
+      <p><strong>Wie lange?</strong> Die Anmelde-Mail wird gelöscht, sobald du eingeladen bist. In der WhatsApp-Gruppe bleibt deine Nummer, bis du austrittst.</p>
+      <p><strong>Deine Rechte:</strong> Auskunft, Berichtigung, Löschung und Widerruf der Einwilligung jederzeit per Mail an die Kontaktadresse. Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren.</p>
+    </details>
+  </section>
+
+  <section class="card success" id="success-card" hidden aria-live="polite" tabindex="-1">
+    <svg viewBox="0 0 72 72" aria-hidden="true">
+      <circle cx="36" cy="36" r="34" fill="#e9f7ef"/>
+      <path d="M22 37 l9 9 l19 -20" fill="none" stroke="#18794e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <h2 id="success-title">Danke für deine Anmeldung!</h2>
+    <p>Deine Anmeldung ist bei uns angekommen.</p>
+    <div class="wa">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.2A8.4 8.4 0 1 1 21 11.5z"/>
+      </svg>
+      <span>Du wirst in Kürze in unsere <strong>WhatsApp-Gruppe</strong> eingeladen.</span>
+    </div>
+    <button type="button" class="secondary" id="again-btn">Weitere Person anmelden</button>
+  </section>
+
+  <footer>Volleyball Kocher + Beck · Just for Fun</footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---------------- Einstellungen ----------------
+  // Formular-Dienst, der jede Anmeldung als E-Mail ins Postfach schickt.
+  // Empfohlen: Web3Forms. Auf https://web3forms.com die Adresse eintragen und den per Mail
+  // zugeschickten Access Key hier einsetzen – fertig.
+  var WEB3FORMS_KEY = "";
+  // Ohne Key wird FormSubmit genutzt. Beim allerersten Versand schickt FormSubmit eine
+  // Aktivierungs-Mail ins Postfach; erst nach Klick auf "Activate Form" kommen Anmeldungen an.
+  // Danach kann hier statt der Adresse auch der zugeschickte Alias-Code stehen.
+  var FORMSUBMIT_ID = "Volleyball.Kocher-Beck@gmail.com";
+  // Echte Adresse für den Notfall-Link "per E-Mail anmelden" – bleibt immer die Adresse.
+  var CONTACT_EMAIL = "Volleyball.Kocher-Beck@gmail.com";
+  // -----------------------------------------------
+
+  var form = document.getElementById("signup");
+  var btn = document.getElementById("submit-btn");
+  var sendError = document.getElementById("send-error");
+  var formCard = document.getElementById("form-card");
+  var successCard = document.getElementById("success-card");
+  var successTitle = document.getElementById("success-title");
+  var handyError = document.getElementById("handy-error");
+  var fields = {
+    vorname: document.getElementById("vorname"),
+    nachname: document.getElementById("nachname"),
+    handy: document.getElementById("handy"),
+    consent: document.getElementById("consent")
+  };
+  var order = ["vorname", "nachname", "handy", "consent"];
+  var PHONE_HINT = "Bitte gib eine gültige Handynummer ein, z. B. 0151 23456789.";
+
+  // Macht aus "0151 / 234 567-89", "+49 (0)151 …", "0049 151 …" oder "+49 0151 …" einheitlich
+  // "+4915123456789". Liefert { number } oder { error } mit passender Meldung.
+  function checkPhone(raw) {
+    var s = String(raw).replace(/\(0\)/g, "");
+    var plus = /^[^\d]*[+＋]/.test(s);
+    var digits = s.replace(/\D/g, ""); // entfernt auch unsichtbare Zeichen aus kopierten Nummern
+    var e;
+    if (plus) e = "+" + digits;
+    else if (/^00/.test(digits)) e = "+" + digits.slice(2);
+    else if (/^0/.test(digits)) e = "+49" + digits.slice(1);
+    else if (/^491[5-7]/.test(digits)) e = "+" + digits;
+    else e = "+49" + digits;
+    e = e.replace(/^\+(49|43|41)0/, "+$1");
+
+    if (/^\+49/.test(e)) {
+      if (/^\+491[5-7]\d{8,9}$/.test(e)) return { number: e };
+      if (/^\+49[2-9]\d{5,}$/.test(e)) return { error: "Das sieht nach einer Festnetznummer aus – bitte gib deine Handynummer an." };
+      return { error: PHONE_HINT };
+    }
+    if (/^\+[1-9]\d{7,14}$/.test(e)) return { number: e };
+    return { error: PHONE_HINT };
+  }
+
+  function formatPhone(e164) {
+    // Nur zur besseren Lesbarkeit in der E-Mail: "+49 151 23456789"
+    var m = /^\+49(1\d{2})(\d+)$/.exec(e164);
+    return m ? "+49 " + m[1] + " " + m[2] : e164;
+  }
+
+  function setError(name, show) {
+    var input = fields[name];
+    var err = document.getElementById(name + "-error");
+    var ids = name === "handy" ? ["handy-hint"] : [];
+    if (show) ids.push(err.id);
+    input.setAttribute("aria-invalid", show ? "true" : "false");
+    if (ids.length) input.setAttribute("aria-describedby", ids.join(" "));
+    else input.removeAttribute("aria-describedby");
+    err.classList.toggle("show", show);
+  }
+
+  function isValid(name) {
+    if (name === "consent") return fields.consent.checked;
+    if (name === "handy") {
+      var r = checkPhone(fields.handy.value);
+      if (r.error) handyError.textContent = r.error;
+      return !r.error;
+    }
+    return fields[name].value.trim().length > 0;
+  }
+
+  function validate() {
+    var firstBad = null;
+    order.forEach(function (name) {
+      var ok = isValid(name);
+      setError(name, !ok);
+      if (!ok && !firstBad) firstBad = fields[name];
+    });
+    if (firstBad) firstBad.focus();
+    return !firstBad;
+  }
+
+  order.forEach(function (name, i) {
+    var input = fields[name];
+    // Fehlermeldung verschwindet, sobald das Feld korrigiert wird
+    input.addEventListener(name === "consent" ? "change" : "input", function () {
+      if (input.getAttribute("aria-invalid") === "true" && isValid(name)) setError(name, false);
+    });
+    // "Weiter" auf der Handy-Tastatur springt ins nächste Feld, statt das Formular abzuschicken
+    if (name !== "consent") {
+      input.addEventListener("keydown", function (e) {
+        if (e.key !== "Enter") return;
+        e.preventDefault();
+        fields[order[i + 1]].focus();
+      });
+    }
+  });
+
+  function mailtoFallback(data) {
+    var body = "Vorname: " + data.Vorname + "\r\nNachname: " + data.Nachname + "\r\nHandynummer: " + data.Handynummer;
+    return "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(data.subject) + "&body=" + encodeURIComponent(body);
+  }
+
+  function send(data) {
+    var payload = {}, url, k;
+    for (k in data) if (k !== "subject") payload[k] = data[k];
+    if (WEB3FORMS_KEY) {
+      url = "https://api.web3forms.com/submit";
+      payload.access_key = WEB3FORMS_KEY;
+      payload.subject = data.subject;
+      payload.from_name = "Volleyball-Anmeldung";
+    } else {
+      url = "https://formsubmit.co/ajax/" + FORMSUBMIT_ID;
+      payload._subject = data.subject;
+      payload._template = "table";
+      payload._captcha = "false";
+    }
+
+    var controller = "AbortController" in window ? new AbortController() : null;
+    var timer = controller ? setTimeout(function () { controller.abort(); }, 20000) : null;
+    function done() { if (timer) clearTimeout(timer); }
+
+    return fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(payload),
+      referrerPolicy: "strict-origin-when-cross-origin", // FormSubmit lehnt Anfragen ohne Referer ab
+      signal: controller ? controller.signal : undefined
+    })
+      .then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (json) {
+          if (!res.ok || String(json.success) !== "true") {
+            throw new Error(json.message || ("HTTP " + res.status));
+          }
+        });
+      })
+      .then(done, function (err) { done(); throw err; });
+  }
+
+  function showFailure(data, err) {
+    if (window.console) console.warn("Anmeldung fehlgeschlagen:", err);
+    sendError.innerHTML = "";
+    sendError.appendChild(document.createTextNode("Das hat leider nicht geklappt. Bitte versuch es gleich nochmal – oder "));
+    var a = document.createElement("a");
+    a.href = mailtoFallback(data);
+    a.textContent = "schick uns deine Anmeldung per E-Mail";
+    sendError.appendChild(a);
+    sendError.appendChild(document.createTextNode("."));
+    if (err && /activat/i.test(err.message)) {
+      sendError.appendChild(document.createTextNode(" (Hinweis fürs Orga-Team: Das Formular muss noch per Mail bei FormSubmit aktiviert werden.)"));
+    }
+    sendError.classList.add("show");
+  }
+
+  function showSuccess(vorname) {
+    successTitle.textContent = vorname ? "Danke, " + vorname + "!" : "Danke für deine Anmeldung!";
+    formCard.hidden = true;
+    successCard.hidden = false;
+    window.scrollTo(0, 0);
+    successCard.focus();
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    sendError.classList.remove("show");
+    if (btn.disabled) return;
+
+    // Spam-Bot hat das versteckte Feld ausgefüllt: so tun, als hätte alles geklappt.
+    if (document.getElementById("_honey").value) { showSuccess(""); return; }
+    if (!validate()) return;
+
+    var vorname = fields.vorname.value.trim();
+    var nachname = fields.nachname.value.trim();
+    var phone = checkPhone(fields.handy.value).number;
+    var data = {
+      Vorname: vorname,
+      Nachname: nachname,
+      Handynummer: formatPhone(phone),
+      WhatsApp: "https://wa.me/" + phone.slice(1),
+      "Einwilligung Datenschutz": "ja",
+      "Angemeldet am": new Date().toLocaleString("de-DE", { dateStyle: "medium", timeStyle: "short" }),
+      subject: "Volleyball-Anmeldung: " + vorname + " " + nachname
+    };
+
+    if (typeof window.fetch !== "function") { showFailure(data, new Error("fetch fehlt")); return; }
+
+    btn.disabled = true;
+    btn.textContent = "Wird gesendet …";
+
+    send(data)
+      .then(function () {
+        form.reset();
+        showSuccess(vorname);
+      }, function (err) {
+        showFailure(data, err);
+      })
+      .then(function () {
+        btn.disabled = false;
+        btn.textContent = "Anmeldung bestätigen";
+      });
+  });
+
+  document.getElementById("again-btn").addEventListener("click", function () {
+    successCard.hidden = true;
+    formCard.hidden = false;
+    fields.vorname.focus();
+  });
+})();
+</script>
+</body>
+</html>
